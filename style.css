@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900');
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-text-color: hsl(0, 0%, 100%);
+    --Neutral-300: hsl(252, 6%, 83%);
+    --Neutral-500: hsl(246, 15%, 58%);
+    --Neutral-700: hsl(245, 19%, 35%);
+    --Neutral-900: hsl(247, 69%, 10%);
+    --Orange-500: hsl(7, 88%, 67%);
+    --Orange-700: hsl(7, 71%, 60%);
+    --Gradient-text: linear-gradient(to right, hsl(7, 86%, 67%), hsl(0, 0%, 100%))
+}
+
+html,
+body {
+    font-family: "Inconsolata", sans-serif;
+    padding: 0;
+    margin: 0;
+    color: var(--main-text-color);
+    text-align: center;
+}
+
+/* typography */
+h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-clamp: 2;
+}
+
+/* layotut */
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100%;
+    position: relative;
+}
+
+body {
+    background-image: url('./images/background-desktop.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1em;
+    position: relative;
+    height: 100%;
+    z-index: 1;
+    --svg1: url('./images/pattern-lines.svg');
+    --svg2: url('./images/pattern-circle.svg');
+    --svg3: url('./images/pattern-squiggly-line-bottom-mobile-tablet.svg');
+    --svg4: url('./images/pattern-squiggly-line-top.svg')
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--svg1) no-repeat, var(--svg2) no-repeat;
+    background-size: 100%, 150px;
+    background-position: 0% 0%, 130% 70%;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--svg4) no-repeat, var(--svg3) no-repeat;
+    background-size: 150px, 250px;
+    background-position: 100% 2%, 0% 100%;
+    height: 100%;
+    width: 100%;
+    z-index: -2;
+}
+
+.hook {
+    font-size: 1.3rem;
+    line-height: 1.5rem;
+    margin-bottom: 2em;
+}
+
+/* form */
+form {
+    width: 100%;
+    margin: 1.5em auto 4.5em;
+    /* display: grid;
+    gap: 1.5em; */
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.75em;
+    font-size: 1.25rem;
+    width: fit-content;
+}
+
+input {
+    width: 100%;
+    padding: 1em;
+    border-radius: 1em;
+    border: none;
+    box-shadow: 0 0 2px var(--Neutral-300);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--Neutral-300);
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 1.5em;
+    cursor: pointer;
+    /* backdrop-filter: blur(3px); */
+}
+
+input:focus,
+input:active {
+    border: 3px solid var(--Neutral-900);
+    outline: 1px solid var(--Neutral-300);
+}
+
+input:hover {
+    background-color: var(--Neutral-700);
+}
+
+input::placeholder {
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--Neutral-300);
+}
+
+.generate-ticket-btn {
+    font-family: inherit;
+    font-size: 1.25rem;
+    font-weight: 900;
+    padding: 0.75em;
+    border-radius: 0.75em;
+    color: var(--Neutral-900);
+    border: none;
+    background-color: var(--Orange-500);
+    width: 100%;
+}
+
+.generate-ticket-btn:hover {
+    background-color: var(--Orange-700);
+}
+
+.drag-zone-holder {
+    margin-bottom: 1.5em;
+}
+
+.drag-zone {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    border-radius: 1em;
+    border: 2px dashed var(--Neutral-500);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--Neutral-300);
+    background-color: rgba(255, 255, 255, 0.102);
+
+}
+
+.drag-zone:hover {
+    background-color: var(--Neutral-700);
+
+}
+
+.drag-zone .image-holder {
+    width: 60px;
+    height: 60px;
+    background: rgb(255, 255, 255, 0.1);
+    border-radius: 0.5em;
+    border: 1px solid var(--Neutral-500);
+}
+
+.image-holder .upload-icon {
+    padding: 0.25em;
+    width: 100%;
+    height: 100%;
+}
+
+.image-holder .user-image {
+    width: 100%;
+    height: 100%;
+}
+
+input[type='file'] {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.focus-avatar {
+    padding: 4px;
+    border: 2px solid var(--Neutral-500);
+    border-radius: 1.25em;
+}
+
+.options {
+    display: flex;
+    gap: 1em;
+}
+
+.options button {
+    font-family: inherit;
+    padding: 0.5em;
+    background-color: var(--Neutral-700);
+    border: none;
+    color: var(--Neutral-300);
+    font-size: 1rem;
+    border-radius: 0.5em;
+    cursor: pointer;
+}
+
+.options .remove-image {
+    text-decoration: underline;
+}
