@@ -9,7 +9,45 @@
 </head>
 
 <body>
+    <div class="container">
+        <div class="logo">
+            <img src="./images/logo-full.svg">
+        </div>
+        <h1 class="title">Your Journey to coding conf 2025 starts Here!</h1>
+        <p class="hook">Secure your spot at next year's biggest coding Conference.</p>
 
+        <form method="post">
+
+            <label for="avatar">Uploda Avatar</label>
+            <div class="drag-zone-holder" id="drag-zone-holder">
+                <div class="drag-zone" id="drag-zone">
+                    <input type="file" id="avatar" class="avatar" accept="image/*" required>
+                    <div class="image-holder">
+                        <img class="upload-icon" src="./images/icon-upload.svg">
+                    </div>
+                    <span class="drag-zone-text">Drag and drop or Click to upload</span>
+                </div>
+            </div>
+
+            <div>
+                <label for="full-name">Full Name</label>
+                <input type="text" name="full-name" id="full-name" placeholder="Mohamed samir" autofocus="true">
+            </div>
+
+            <div>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="example@email.com">
+            </div>
+
+            <div>
+                <label for="github-username">GitHub Username</label>
+                <input type="text" name="github-username" id="github-username" placeholder="@yourusername">
+            </div>
+
+            <button class="generate-ticket-btn" id="generate-ticket-btn">Generate My Ticket</button>
+        </form>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
