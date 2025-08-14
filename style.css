@@ -254,6 +254,13 @@ input[type='file'] {
     border: 2px dashed var(--Neutral-500);
 }
 
+.previewfocus {
+    top: 4px;
+    left: 4px;
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+}
+
 .hidden {
     display: none;
 }

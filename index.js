@@ -3,6 +3,7 @@ const dragzone = document.getElementById('drag-zone')
 const avatarInput = document.getElementById('avatar')
 const gererateTicketBtn = document.getElementById('generate-ticket-btn')
 
+let allFormValues
 
 let showImage = false
 // Event listeners
@@ -62,6 +63,7 @@ function userImagePreview() {
             dragzone.classList.add('hidden')
             // to keep it more user friendly it remove the hover effect after loading the image of user
             dragzone.style.backgroundColor = '#ffffff1a'
+            dragzoneHolder.classList.remove('focus-avatar') // remove focus effect when image loaded
         }
         reader.readAsDataURL(file)
 
@@ -76,3 +78,10 @@ function updateUserimage(file) {
     dataTransfer.items.add(file)
     avatarInput.files = dataTransfer.files
 }
+
+// get form data
+document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    allFormValues = Object.fromEntries(formData.entries())
+})
