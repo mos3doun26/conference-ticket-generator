@@ -152,12 +152,14 @@ input::placeholder {
 
 .drag-zone-holder {
     margin-bottom: 1.5em;
+    position: relative;
+    height: 150px;
 }
 
 .drag-zone {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 100%;
     border-radius: 1em;
     border: 2px dashed var(--Neutral-500);
     display: flex;
@@ -174,7 +176,7 @@ input::placeholder {
 
 }
 
-.drag-zone .image-holder {
+.image-holder {
     width: 60px;
     height: 60px;
     background: rgb(255, 255, 255, 0.1);
@@ -182,15 +184,14 @@ input::placeholder {
     border: 1px solid var(--Neutral-500);
 }
 
-.image-holder .upload-icon {
-    padding: 0.25em;
+.image-holder img {
+    border-radius: 0.5em;
     width: 100%;
     height: 100%;
 }
 
-.image-holder .user-image {
-    width: 100%;
-    height: 100%;
+.image-holder .upload-icon {
+    padding: 0.25em;
 }
 
 input[type='file'] {
@@ -200,6 +201,7 @@ input[type='file'] {
     left: 0;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 
 .focus-avatar {
@@ -213,7 +215,8 @@ input[type='file'] {
     gap: 1em;
 }
 
-.options button {
+.options button,
+.change-image {
     font-family: inherit;
     padding: 0.5em;
     background-color: var(--Neutral-700);
@@ -226,4 +229,31 @@ input[type='file'] {
 
 .options .remove-image {
     text-decoration: underline;
+}
+
+.options .change-image {
+    position: relative;
+    width: fit-content;
+    height: 35px;
+}
+
+.preview-image-module {
+    position: absolute;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: var(--Neutral-300);
+    background-color: rgba(255, 255, 255, 0.102);
+    border-radius: 1em;
+    border: 2px dashed var(--Neutral-500);
+}
+
+.hidden {
+    display: none;
 }
