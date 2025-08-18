@@ -5,9 +5,8 @@ const gererateTicketBtn = document.getElementById('generate-ticket-btn')
 
 let allFormValues
 
-let showImage = false
 // Event listeners
-// gives the avatar drag zone holder the foucus effect
+
 document.addEventListener('click', (e) => {
     // give the dragzone the focus effect
     e.target.id === 'avatar' ? dragzoneHolder.classList.add('focus-avatar') : dragzoneHolder.classList.remove('focus-avatar')
@@ -18,6 +17,8 @@ document.addEventListener('click', (e) => {
         document.querySelector('.preview-image-module').remove()
         dragzone.classList.remove('hidden')
         avatarInput.value = ''
+        document.getElementById('avatar-error').classList.remove('hide-message')
+        document.getElementById('avatar-error').querySelector('.message-text').textContent = 'Upload you image (max size: 500KB)'
     }
 
     // change the user image and update the main file input
@@ -79,9 +80,117 @@ function updateUserimage(file) {
     avatarInput.files = dataTransfer.files
 }
 
-// get form data
-document.querySelector('form').addEventListener('submit', e => {
-    e.preventDefault()
-    const formData = new FormData(e.target)
-    allFormValues = Object.fromEntries(formData.entries())
-})
+// validation of inputs
+class FormValidator {
+    constructor(form) {
+        this.form = form
+        this.fields = form.querySelectorAll('input')
+        this.hasErrros = []
+    }
+
+    init() {
+        this.validateOnEntry()
+        this.validateOnSubmit()
+    }
+
+    validateOnSubmit() {
+        this.form.addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            this.fields.forEach(field => {
+                this.validateFeilds(field)
+                const messageEl = document.getElementById(`${field.id}-error`)
+                if (messageEl.classList.contains('error')) {
+                    this.hasErrros.push(`Error in ${field.id} input`)
+                }
+            })
+
+            if (this.hasErrros.length === 0) {
+                // get data from the form
+                const formData = new FormData(e.target)
+                allFormValues = Object.fromEntries(formData.entries())
+                console.log(allFormValues)
+                // render ticket here
+                renderTicket()
+            }
+        })
+    }
+
+    validateOnEntry() {
+        this.fields.forEach(field => {
+            field.addEventListener('input', () => {
+                this.validateFeilds(field)
+            })
+        })
+    }
+
+    validateFeilds(field) {
+        if (field.value.trim() === '') {
+            this.setStatus({ field: field, message: `${field.name.replace('-', ' ')} can't be blank`, status: 'error' })
+        } else {
+            this.setStatus({ field: field, message: '', status: 'success' })
+        }
+
+        // avatar validations
+        if (field.id === 'avatar') {
+            console.log(field.files[0])
+            if (field.files.length === 0) {
+                this.setStatus({ field: field, message: 'Should upload an image', status: 'error' })
+            } else if (field.files[0].size < 512000) {
+                this.setStatus({ field: field, message: 'Too large, upload image under 500KB', status: 'error' })
+            }
+        }
+
+        // full name validations 
+        if (field.id === 'full-name') {
+            const reg = /[^a-z A-Z]+/
+            if (reg.test(field.value)) {
+                this.setStatus({ field: field, message: 'Name should be letters only', status: 'error' })
+            } else if (field.value.length < 3) {
+                this.setStatus({ field: field, message: 'Name should be more than 3 character', status: 'error' })
+            }
+        }
+
+        // email validations
+        if (field.id === 'email') {
+            const reg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            if (!reg.test(field.value)) {
+                this.setStatus({ field: field, message: 'Enter a valid email', status: 'error' })
+            }
+        }
+
+        // github username validations
+        if (field.id === 'github-username') {
+            const reg = /^(?!-)(?!.*--)[a-zA-Z0-9-]{1,39}(?<!-)$/
+            if (!reg.test(field.value)) {
+                this.setStatus({ field: field, message: 'Enter a valid github username', status: 'error' })
+            }
+        }
+    }
+
+    setStatus(validationObj) {
+        const messageEl = document.getElementById(`${validationObj.field.id}-error`)
+        const messageText = messageEl.querySelector('.message-text')
+        if (validationObj.status === 'error') {
+            messageText.textContent = validationObj.message
+            messageEl.classList.add('error')
+            messageEl.classList.remove('hide-message')
+            validationObj.field.classList.add('error-input')
+        } else if (validationObj.status === 'success') {
+            messageText.textContent = validationObj.message
+            messageEl.classList.remove('error')
+            messageEl.classList.add('hide-message')
+            validationObj.field.classList.remove('error-input')
+        }
+    }
+}
+
+
+// render ticket with the data from the form
+function renderTicket() {
+
+}
+
+const fv = new FormValidator(document.getElementById('form'))
+
+fv.init()
