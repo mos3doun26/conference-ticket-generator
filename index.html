@@ -10,60 +10,65 @@
 
 <body>
     <div class="container">
-        <div class="logo">
-            <img src="./images/logo-full.svg">
-        </div>
-        <h1 class="title">Your Journey to coding conf 2025 starts Here!</h1>
-        <p class="hook">Secure your spot at next year's biggest coding Conference.</p>
+        <header>
+            <div class="logo">
+                <img src="./images/logo-full.svg">
+            </div>
+        </header>
+        <main>
 
-        <form method="post" id="form">
+            <h1 class="title">Your Journey to coding conf 2025 starts Here!</h1>
+            <p class="hook">Secure your spot at next year's biggest coding Conference.</p>
 
-            <label for="avatar">Uploda Avatar</label>
-            <div class="drag-zone-holder" id="drag-zone-holder">
-                <div class="drag-zone" id="drag-zone">
-                    <input name="avatar" type="file" id="avatar" class="avatar" accept="image/*">
-                    <div class="image-holder">
-                        <img class="upload-icon" src="./images/icon-upload.svg">
+            <form method="post" id="form">
+
+                <label for="avatar">Uploda Avatar</label>
+                <div class="drag-zone-holder" id="drag-zone-holder">
+                    <div class="drag-zone" id="drag-zone">
+                        <input name="avatar" type="file" id="avatar" class="avatar" accept="image/*">
+                        <div class="image-holder">
+                            <img class="upload-icon" src="./images/icon-upload.svg">
+                        </div>
+                        <div class="drag-zone-text">Drag and drop or Click to upload</div>
                     </div>
-                    <div class="drag-zone-text">Drag and drop or Click to upload</div>
                 </div>
-            </div>
-            <div class="message" id="avatar-error">
-                <img src="./images/icon-info.svg" class="info">
-                <span class="message-text">Upload you image (max size: 500KB)</span>
-            </div>
-
-            <div>
-                <label for="full-name">Full Name</label>
-                <input type="text" name="full-name" id="full-name" maxlength=30 placeholder="Mohamed samir"
-                    autofocus="true">
-                <div class="message hide-message" id="full-name-error">
+                <div class="message" id="avatar-error">
                     <img src="./images/icon-info.svg" class="info">
-                    <span class="message-text"></span>
-                </div>
-            </div>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="example@email.com">
-                <div class="message hide-message" id="email-error">
-                    <img src="./images/icon-info.svg" class="info">
-                    <span class="message-text"></span>
-                </div>
-            </div>
-
-            <div>
-                <label for="github-username">GitHub Username</label>
-                <input type="text" name="github-username" id="github-username" placeholder="@yourusername">
-                <div class="message hide-message" id="github-username-error">
-                    <img src="./images/icon-info.svg" class="info">
-                    <span class="message-text"></span>
+                    <span class="message-text">Upload you image (max size: 1.5MB)</span>
                 </div>
 
-            </div>
+                <div>
+                    <label for="fullname">Full Name</label>
+                    <input type="text" name="fullName" id="full-name" maxlength=30 placeholder="Mohamed samir"
+                        autofocus="true">
+                    <div class="message hide-message" id="full-name-error">
+                        <img src="./images/icon-info.svg" class="info">
+                        <span class="message-text"></span>
+                    </div>
+                </div>
 
-            <button class="generate-ticket-btn" id="generate-ticket-btn">Generate My Ticket</button>
-        </form>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="example@email.com">
+                    <div class="message hide-message" id="email-error">
+                        <img src="./images/icon-info.svg" class="info">
+                        <span class="message-text"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="github-username">GitHub Username</label>
+                    <input type="text" name="githubUsername" id="github-username" placeholder="@yourusername">
+                    <div class="message hide-message" id="github-username-error">
+                        <img src="./images/icon-info.svg" class="info">
+                        <span class="message-text"></span>
+                    </div>
+
+                </div>
+
+                <button class="generate-ticket-btn" id="generate-ticket-btn">Generate My Ticket</button>
+            </form>
+        </main>
     </div>
     <script src="index.js"></script>
 </body>

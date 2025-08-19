@@ -2,6 +2,8 @@ const dragzoneHolder = document.getElementById('drag-zone-holder')
 const dragzone = document.getElementById('drag-zone')
 const avatarInput = document.getElementById('avatar')
 const gererateTicketBtn = document.getElementById('generate-ticket-btn')
+const avatarMessage = document.getElementById('avatar-error')
+
 
 let allFormValues
 
@@ -17,8 +19,9 @@ document.addEventListener('click', (e) => {
         document.querySelector('.preview-image-module').remove()
         dragzone.classList.remove('hidden')
         avatarInput.value = ''
-        document.getElementById('avatar-error').classList.remove('hide-message')
-        document.getElementById('avatar-error').querySelector('.message-text').textContent = 'Upload you image (max size: 500KB)'
+        avatarMessage.classList.remove('hide-message')
+        avatarMessage.classList.remove('error')
+        avatarMessage.querySelector('.message-text').textContent = 'Upload you image (max size: 1.5MB)'
     }
 
     // change the user image and update the main file input
@@ -109,8 +112,6 @@ class FormValidator {
                 // get data from the form
                 const formData = new FormData(e.target)
                 allFormValues = Object.fromEntries(formData.entries())
-                console.log(allFormValues)
-                // render ticket here
                 renderTicket()
             }
         })
@@ -133,11 +134,10 @@ class FormValidator {
 
         // avatar validations
         if (field.id === 'avatar') {
-            console.log(field.files[0])
             if (field.files.length === 0) {
                 this.setStatus({ field: field, message: 'Should upload an image', status: 'error' })
-            } else if (field.files[0].size < 512000) {
-                this.setStatus({ field: field, message: 'Too large, upload image under 500KB', status: 'error' })
+            } else if (field.files[0].size > 1536000) {
+                this.setStatus({ field: field, message: 'Too large, upload image under 1.5MB', status: 'error' })
             }
         }
 
@@ -186,9 +186,51 @@ class FormValidator {
 }
 
 
+// get ticket html 
+function getTicketHtml() {
+    const randNum = () => {
+        return Math.floor(Math.random() * 100000)
+    }
+
+    return `<div class="ticket-page">
+            <h1>
+                Congrates, <span class="gradient-fullname">${allFormValues.fullName}!</span> Your ticket is ready.
+            </h1>
+            <p>We've emailed your ticket to<br><span class="ticket-email">${allFormValues.email}</span> and will send
+                updates in the run
+                up to the event.</p>
+            <div class="ticket">
+                <div class="ticket-data">
+                    <div class="ticket-head">
+                        <img src="./images/logo-mark.svg">
+                        <div class="info">
+                            <h3 class="title">Coding conf</h3>
+                            <span class="date-city">jan 23, 2035 / Austin, TX</span>
+                        </div>
+                    </div>
+
+                    <div class="ticket-tail">
+                        <img class="user-img" src="${URL.createObjectURL(allFormValues.avatar)}">
+                        <div>
+                            <h3 class="ticket-fullname">${allFormValues.fullName}</h3>
+                            <div class="github">
+                                <img class="github-icon" src="./images/icon-github.svg">
+                                <span class="ticket-github-username">@${allFormValues.githubUsername}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-number">
+                    <span class="rand-num">#${randNum()}</span>
+                </div>
+            </div>
+        </div>`
+}
+
 // render ticket with the data from the form
 function renderTicket() {
-
+    document.querySelector('main').innerHTML = getTicketHtml()
 }
 
 const fv = new FormValidator(document.getElementById('form'))
