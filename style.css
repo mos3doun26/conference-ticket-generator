@@ -12,7 +12,6 @@
     --Neutral-900: hsl(247, 69%, 10%);
     --Orange-500: hsl(7, 88%, 67%);
     --Orange-700: hsl(7, 71%, 60%);
-    --Gradient-text: linear-gradient(to right, hsl(7, 86%, 67%), hsl(0, 0%, 100%))
 }
 
 html,
@@ -296,4 +295,133 @@ input.error-input {
     border: 1px solid rgb(211, 107, 107);
     outline: none;
     transition: border 150ms;
+}
+
+/* ticket page still */
+.ticket-page {
+    padding: 1em;
+}
+
+.ticket-page h1 {
+    font-size: 2.5rem;
+}
+
+.gradient-fullname {
+    background: -webkit-linear-gradient(left, #f37362ff, #ffffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ticket-page>p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+.ticket {
+    display: grid;
+    grid-template-columns: 1fr 15%;
+    width: 100%;
+    /* height: 220px; */
+    max-width: 450px;
+    margin: 0 auto;
+    margin-top: 3em;
+    text-align: left;
+    background-image: url('./images/pattern-ticket.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 0.5em;
+    aspect-ratio: 450 / 220;
+}
+
+.ticket-data,
+.ticket-number {
+    padding: 1.5em 1em;
+}
+
+.ticket-data {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ticket-head {
+    display: flex;
+    gap: 1em;
+    align-items: start;
+}
+
+.ticket-tail {
+    display: flex;
+    gap: 0.5em;
+    align-items: end;
+}
+
+.ticket-tail .user-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 0.5em;
+}
+
+.ticket-tail .ticket-fullname {
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+.ticket-tail .github {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+}
+
+.ticket-head .info .title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0;
+    margin-bottom: 0.5em;
+}
+
+.ticket-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rand-num {
+    font-size: 1.5rem;
+    transform: rotate(90deg);
+    color: var(--Neutral-300);
+}
+
+/* media quries */
+@media (max-width: 480px) {
+    .ticket {
+        height: 180px;
+        aspect-ratio: 1.8 / 1;
+    }
+
+    .ticket .ticket-head .info .title {
+        font-size: 1.5rem;
+        margin-bottom: 0.1em;
+    }
+
+    .ticket-head img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .ticket-head .info .date-city {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 365px) {
+    .ticket .ticket-head .info .date-city {
+        font-size: 0.8rem;
+    }
+
+    .ticket {
+        height: 170px;
+        aspect-ratio: 1.7 / 1;
+    }
 }
