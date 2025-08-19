@@ -35,7 +35,7 @@ h1 {
 .container {
     max-width: 1440px;
     margin: 0 auto;
-    height: 100vh;
+    height: 100%;
     position: relative;
 }
 
@@ -46,7 +46,6 @@ body {
     background-repeat: no-repeat;
     padding: 1em;
     position: relative;
-    height: 100%;
     z-index: 1;
     --svg1: url('./images/pattern-lines.svg');
     --svg2: url('./images/pattern-circle.svg');
@@ -424,5 +423,29 @@ input.error-input {
     .ticket {
         height: 170px;
         aspect-ratio: 1.7 / 1;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    body {
+        background-image: url('./images/background-tablet.png');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+    body {
+        background-image: url('./images/background-mobile.png');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
+@media (min-width: 700px) {
+    .container {
+        height: 100vh;
     }
 }
